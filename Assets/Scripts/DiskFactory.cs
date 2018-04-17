@@ -30,10 +30,29 @@ public class DiskFactory : MonoBehaviour {
             DiskObj.AddComponent<DiskProperties>();
         }
         //Add properties
-        DiskObj.GetComponent<DiskProperties>().color = Color.yellow;
-        DiskObj.GetComponent<DiskProperties>().speed = 4.0f;
-        DiskObj.GetComponent<DiskProperties>().direction = new Vector3(1, 1, 0);
-        DiskObj.GetComponent<Renderer>().material.color = Color.yellow;
+        float colorpicker= UnityEngine.Random.Range(0f, 3f);
+        //Debug.Log(colorpicker);
+        if(colorpicker<3)
+        {
+            Debug.Log("yello");
+            DiskObj.GetComponent<DiskProperties>().color = Color.yellow;
+            DiskObj.GetComponent<Renderer>().material.color = Color.yellow;
+        }
+        if (colorpicker<2)
+        {
+            Debug.Log("red");
+            DiskObj.GetComponent<DiskProperties>().color = Color.red;
+            DiskObj.GetComponent<Renderer>().material.color = Color.red;
+        }
+        if (colorpicker<1)
+        {
+            Debug.Log("white");
+            DiskObj.GetComponent<DiskProperties>().color = Color.white;
+            DiskObj.GetComponent<Renderer>().material.color = Color.white;
+        }
+        Debug.Log("------------");
+        DiskObj.GetComponent<DiskProperties>().speed = 3.0f+round;
+        DiskObj.GetComponent<DiskProperties>().direction = new Vector3(UnityEngine.Random.Range(-2f, 2f), 1, 0);
         //--
         UsedDisk.Add(DiskObj.GetComponent<DiskProperties>());
         DiskObj.name = DiskObj.GetInstanceID().ToString();

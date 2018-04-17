@@ -5,14 +5,14 @@ using System.Collections;
 public class CCFlyAction : SSAction
 {
     float speed;
-    //float gforce;
-    //float time;
+    float gforce;
+    float time;
     Vector3 direction;
     // Use this for initialization
     public override void Start()
     {
-        //time = 0;
-        //gforce = 10;
+        time = 0;
+        gforce = 10;
         enable = true;
         speed = GameObj.GetComponent<DiskProperties>().speed;
         direction = GameObj.GetComponent<DiskProperties>().direction;
@@ -24,6 +24,8 @@ public class CCFlyAction : SSAction
         //Add G force;
         if(GameObj.activeSelf)
         {
+            time += Time.deltaTime;
+            Trans.Translate(Vector3.down * gforce * time * Time.deltaTime);
             Trans.Translate(direction * speed * Time.deltaTime);
             if (this.Trans.position.y<-4)
             {
